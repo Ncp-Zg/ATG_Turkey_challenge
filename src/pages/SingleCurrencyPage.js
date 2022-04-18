@@ -193,21 +193,6 @@ const SingleCurrencyPage = () => {
                         <span
                           style={
                             index === 0 &&
-                            filteredData[0]?.current.banknoteselling <
-                              filteredData[0]?.previous.banknoteselling
-                              ? { color: "red" }
-                              : index === 0
-                              ? { color: "green" }
-                              : null
-                          }
-                        >
-                          {data.banknoteselling}₺
-                        </span>
-                      </TableCell>
-                      <TableCell align="center">
-                        <span
-                          style={
-                            index === 0 &&
                             filteredData[0]?.current.banknotebuying <
                               filteredData[0]?.previous.banknotebuying
                               ? { color: "red" }
@@ -217,6 +202,21 @@ const SingleCurrencyPage = () => {
                           }
                         >
                           {data.banknotebuying}₺
+                        </span>
+                      </TableCell>
+                      <TableCell align="center">
+                        <span
+                          style={
+                            index === 0 &&
+                            filteredData[0]?.current.banknoteselling <
+                              filteredData[0]?.previous.banknoteselling
+                              ? { color: "red" }
+                              : index === 0
+                              ? { color: "green" }
+                              : null
+                          }
+                        >
+                          {data.banknoteselling}₺
                         </span>
                       </TableCell>
                       <TableCell align="center" className="singleCell">
