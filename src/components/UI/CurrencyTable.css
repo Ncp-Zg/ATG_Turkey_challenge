@@ -1,0 +1,43 @@
+
+.card:hover{
+    cursor: pointer;
+    background: lightgray;
+}
+
+.dropDown {
+    position: relative;
+    animation: mymove 4s infinite;
+  }
+  
+  @keyframes mymove {
+    from {top: 1px;}
+    to {bottom: 3px;}
+  }
+
+.dropUp {
+    position: relative;
+    animation: mymoveUp 4s infinite;
+  }
+  
+  @keyframes mymoveUp {
+    from {bottom: 3px;}
+    to {top: 0px;}
+  }
+
+  @media only screen and (max-width: 750px) {
+    .boxCard {
+        width:90% !important;
+    }
+    .card {
+      padding-right:35px !important;
+    }
+    
+  }
+
+  @media only screen and (max-width: 1200px) and (min-width: 750px){
+    .card {
+      padding-right:30px !important;
+    }
+    
+  }
+  
