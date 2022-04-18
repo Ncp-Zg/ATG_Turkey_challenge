@@ -60,12 +60,12 @@ const ItemComponent = ({ data }) => {
           >
             <Grid
               sx={
-                data.previous.forexselling > data.current.forexselling
+                data.previous.forexbuying > data.current.forexbuying
                   ? { color: "red" }
                   : { color: "green" }
               }
             >
-              {data.current.forexselling.slice(0, 5)}₺
+              {data.current.forexbuying.slice(0, 5)}₺
             </Grid>
             {data.previous.forexselling > data.current.forexselling ? (
               <ArrowDropDownIcon className="dropDown" sx={{ color: "red" }} />
@@ -86,12 +86,12 @@ const ItemComponent = ({ data }) => {
           >
             <Grid
               sx={
-                data.previous.forexbuying > data.current.forexbuying
+                data.previous.forexselling > data.current.forexselling
                   ? { color: "red" }
                   : { color: "green" }
               }
             >
-              {data.current.forexbuying.slice(0, 5)}₺
+              {data.current.forexselling.slice(0, 5)}₺
             </Grid>
             {data.previous.forexbuying > data.current.forexbuying ? (
               <ArrowDropDownIcon className="dropDown" sx={{ color: "red" }} />
