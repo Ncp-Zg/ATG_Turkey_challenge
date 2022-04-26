@@ -7,6 +7,7 @@ import { Grid } from "@mui/material";
 import "./CurrencyTable.css";
 import CurrencyItem from "./CurrencyItem";
 import logo from "../../assets/exchangemoney.png"
+import Loading from "../Loading"
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -42,10 +43,10 @@ export default function BasicStack({ Tarih, BultenNo, allData, search }) {
         <Stack spacing={2}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span>
-              Bulten No: <b>{BultenNo}</b>
+              Bulten No: <b>{BultenNo ? BultenNo : <Loading size={10}/>}</b>
             </span>
             <span>
-              Date : <b>{Tarih}</b>
+              Date : <b>{Tarih ? Tarih : <Loading size={10}/>}</b>
             </span>
           </div>
           <Item>
