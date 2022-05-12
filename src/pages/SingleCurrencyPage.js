@@ -15,6 +15,7 @@ import { Box } from "@mui/system";
 import Loading from "../components/Loading";
 import "./SingleCurrencyPage.css";
 import LineChart from "../components/LineChart";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 const SingleCurrencyPage = () => {
   const [state, setState] = useState([]);
@@ -27,6 +28,14 @@ const SingleCurrencyPage = () => {
   };
 
   useEffect(() => {
+    const auth = getAuth();
+    signInAnonymously(auth)
+      .then((res) => {})
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
     getPreviousData();
   }, [state.length]);
   const filteredData = state.filter(

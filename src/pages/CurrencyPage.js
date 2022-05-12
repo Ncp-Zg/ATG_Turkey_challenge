@@ -4,8 +4,9 @@ import writeCurrencyData, { db } from "../config/firebase";
 import CurrencyTable from "../components/UI/CurrencyTable";
 import { get, ref } from "firebase/database";
 import Loading from "../components/Loading";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
-const CurrencyPage = ({search}) => {
+const CurrencyPage = ({ search }) => {
   const [data, setData] = useState([]);
   const [allData, setAllData] = useState([]);
 
@@ -13,7 +14,15 @@ const CurrencyPage = ({search}) => {
     await axios
       .get("https://still-depths-79348.herokuapp.com/today.xml")
       .then((res) => {
-        setData(res.data)
+        setData(res.data);
+        const auth = getAuth();
+        signInAnonymously(auth)
+          .then((res) => {})
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage);
+          });
       });
   };
 
@@ -33,10 +42,9 @@ const CurrencyPage = ({search}) => {
         Date[0]?.attributes[2].value.replace("/", ""),
         Date[0]?.attributes[0].value,
         data.getElementsByTagName("BanknoteSelling")[0].innerHTML,
-        data.getElementsByTagName("BanknoteBuying")[0].innerHTML,
+        data.getElementsByTagName("BanknoteBuying")[0].innerHTML
       )
     );
-
   };
 
   const parser = new DOMParser();
@@ -47,7 +55,8 @@ const CurrencyPage = ({search}) => {
   const CertainData = Currency?.filter(
     (x) =>
       x.getElementsByTagName("CurrencyName")[0].innerHTML === "US DOLLAR" ||
-      x.getElementsByTagName("CurrencyName")[0].innerHTML === "POUND STERLING" ||
+      x.getElementsByTagName("CurrencyName")[0].innerHTML ===
+        "POUND STERLING" ||
       x.getElementsByTagName("CurrencyName")[0].innerHTML === "EURO"
   );
 
@@ -68,7 +77,14 @@ const CurrencyPage = ({search}) => {
           search={search}
         />
       ) : (
-        <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"80vh"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80vh",
+          }}
+        >
           <Loading size={150} />
         </div>
       )}
